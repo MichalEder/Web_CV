@@ -104,8 +104,8 @@ if st.session_state["authentication_status"]:
             role = st.text_input("Position:")
             start_date = st.text_input("Start date:")
             end_date = st.text_input("End date:")
-            hard_skills = st.text_input("Hard Skills:")
-            soft_skills = st.text_input("Soft Skills:")
+            skills = st.text_input("Hard Skills:")
+            tools = st.text_input("Tools")
             description = st.text_area("Description:")
             image = st.text_input("Image:")
 
@@ -118,8 +118,8 @@ if st.session_state["authentication_status"]:
                     'Position/Role': role,
                     'Start Date': start_date,
                     'End date': end_date,
-                    'Hard Skills': hard_skills,
-                    'Soft Skills': soft_skills,
+                    'Skills': skills,
+                    'Tools': tools,
                     'Description': description,
                     'Image': image
                 }
