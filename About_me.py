@@ -28,7 +28,6 @@ with col2:
         st.markdown('<i class="fas fa-phone"></i> +420 602 680 577<br>', unsafe_allow_html=True)
         st.markdown('<i class="fas fa-envelope"></i> edermichal.eder@gmail.com<br>', unsafe_allow_html=True)
         st.markdown("""
-                   [<i class="fab fa-github"></i> GitHub](https://github.com/MichalEder) 
-                   |
+                   [<i class="fab fa-github"></i> GitHub](https://github.com/MichalEder)<br> 
                    [<i class="fab fa-linkedin"></i> LinkedIn](https://www.linkedin.com/in/michal-eder-447049272/)
                """, unsafe_allow_html=True)
