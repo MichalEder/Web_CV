@@ -1,0 +1,14 @@
+credentials:
+  usernames:
+    meder:
+      email: edermichal.eder@gmail.com
+      logged_in: False
+      name: Michal Eder
+      password: $2b$12$VBPdz/P1jVV8WgmR9OqS6OfUgr3cfo4/h49jot1q7osgnDBzLmEs2
+cookie:
+  expiry_days: 30
+  key: 'some_signature_key'
+  name: 'some_cookie_name'
+preauthorized:
+
+
