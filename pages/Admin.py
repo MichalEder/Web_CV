@@ -127,7 +127,7 @@ if st.session_state["authentication_status"]:
 
         st.title("Add hobby")
 
-        with st.form("hobby_form")
+        with st.form("hobby_form"):
             hobby = st.text_input("Hobby")
             description = st.text_area("Description:")
             image = st.text_input("Image:")
