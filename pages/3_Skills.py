@@ -15,6 +15,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("The tools in my ever-evolving toolkit")
+st.markdown("<br>", unsafe_allow_html=True)
 
 
 skills = read_resource('resources/skills.txt')

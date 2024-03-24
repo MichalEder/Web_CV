@@ -6,6 +6,7 @@ st.set_page_config(layout="wide")
 
 st.title("Courses Completed and In Progress")
 st.write("I\'m always looking for ways to gain knowledge and abilities that will make a positive impact. My learning journey is driven by a deep passion for personal and professional growth. Here's a snapshot of the courses I'm actively pursuing for that purpose:")
+st.markdown("<br>", unsafe_allow_html=True)
 
 courses = read_resource('resources/courses.txt')
 

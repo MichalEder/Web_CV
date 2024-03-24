@@ -4,9 +4,8 @@ from functions.general import read_resource
 st.set_page_config(layout="wide")
 
 st.title("My Professional Journey")
-st.write('''
+st.markdown("<br>", unsafe_allow_html=True)
 
-''')
 work_experiences = read_resource('resources/work_experience.txt')
 
 if work_experiences:

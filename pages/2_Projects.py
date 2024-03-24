@@ -4,7 +4,7 @@ from functions.general import read_resource
 st.set_page_config(layout="wide")
 
 st.title("Putting my skills to work.")
-st.write('')
+st.markdown("<br>", unsafe_allow_html=True)
 projects = read_resource('resources/projects.txt')
 
 if projects:
@@ -20,3 +20,5 @@ if projects:
                 st.write(f"{project['Description']}")
                 st.write(f"{project['Link']}")
                 st.markdown("---")
+                st.markdown("<br>", unsafe_allow_html=True)
+

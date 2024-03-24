@@ -5,6 +5,7 @@ st.set_page_config(layout="wide")
 
 
 st.title('What I do for fun (and the unexpected skills I pick up).')
+st.markdown("<br>", unsafe_allow_html=True)
 
 
 hobbies = read_resource('resources/hobby.txt')
