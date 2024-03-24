@@ -13,7 +13,7 @@ with col1:
     st.header("Contact")
     st.write("Phone: +420 602 680 577")
     st.write("Email: edermichal.eder@gmail")
-    st.write("[GitHub](https://www.linkedin.com/in/michal-eder-447049272/) ")
+    st.write("[GitHub](https://github.com/MichalEder) ")
     st.write("[LinkedIn](https://www.linkedin.com/in/michal-eder-447049272/)")
 
 with col2:
