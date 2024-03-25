@@ -6,6 +6,7 @@ This web app showcases my skills, experience, and projects within the IT field. 
 Key Features
 
 User Authentication: Password-protected area for adding and potentially editing profile data.
+
 Dynamic Content Management: Powered by SQLite database for storing:
 Projects
 Education
@@ -13,6 +14,7 @@ Courses
 Work Experience
 Hobbies
 Skills
+
 Web-Based UI: Created using Streamlit for user-friendly interactions and data presentation.
 Technologies Used
 
