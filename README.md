@@ -16,7 +16,9 @@ Hobbies
 Skills
 
 Web-Based UI: Created using Streamlit for user-friendly interactions and data presentation.
-Technologies Used
+
+
+Technologies Used:
 
 Python
 Streamlit
