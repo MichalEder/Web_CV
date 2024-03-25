@@ -25,7 +25,7 @@ if work_experiences:
                 st.write(f"Role: {experience['Position_Role']}")
                 st.write(f"Duration: {experience['Start_Date']} - {experience['End_date']}")
 
-                # Add spacing between sections
+
                 st.markdown("<br>", unsafe_allow_html=True)
 
                 st.write(f"Skills: {experience['Skills']}")

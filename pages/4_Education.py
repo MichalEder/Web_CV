@@ -19,7 +19,7 @@ if education:
         st.write(f"Duration of study: {school['Years']}")
         st.write(f"Status: {school['Status']}")
         st.write(school['Note'])
-        st.markdown("<br>", unsafe_allow_html=True)  # Spacing
+        st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("---")
 else:
     st.write("No education information added yet.")

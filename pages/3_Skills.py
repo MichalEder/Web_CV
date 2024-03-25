@@ -49,29 +49,4 @@ if skills:
                 st.write(f"{skill['Description']}")
                 st.write(' ')
                 st.markdown("---")
-    # for skill in skills:
-    #     match skills.index(skill) + 1:
-    #         case 1 | 4 | 7 | 10:
-    #             with col1:
-    #                 st.image(f"resources/images/{skill['Image']}", width=200)
-    #                 st.subheader(skill['Skill'])
-    #                 st.write(f"Level: {skill['Level']}")
-    #                 st.write(f"{skill['Description']}")
-    #                 st.write(' ')
-    #                 st.markdown("---")
-    #         case 2 | 5 | 8 | 11:
-    #             with col2:
-    #                 st.image(f"resources/images/{skill['Image']}", width=200)
-    #                 st.subheader(skill['Skill'])
-    #                 st.write(f"Level: {skill['Level']}")
-    #                 st.write(f"{skill['Description']}")
-    #                 st.write(' ')
-    #                 st.markdown("---")
-    #         case 3 | 6 | 9 | 12:
-    #             with col3:
-    #                 st.image(f"resources/images/{skill['Image']}", width=150)
-    #                 st.subheader(skill['Skill'])
-    #                 st.write(f"Level: {skill['Level']}")
-    #                 st.write(f"{skill['Description']}")
-    #                 st.write(' ')
-    #                 st.markdown("---")
+
