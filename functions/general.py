@@ -15,7 +15,6 @@ def read_resource(table_name, db_file='resources/db.db'):
         cursor = conn.cursor()
         cursor.execute(f"SELECT * FROM {table_name}")
         resources = cursor.fetchall()
-        print(resources)
         column_names = [description[0] for description in cursor.description]
 
         resources_dict = [dict(zip(column_names, row)) for row in resources]
