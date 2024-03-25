@@ -1,34 +1,43 @@
+import sqlite3
 import streamlit as st
-import json
 
-def add_entry(dictionary, filename):
-    """
-    Adds a dictionary as a JSON string to a line in a text file.
+def read_resource(table_name, db_file='resources/db.db'):
+    """Reads all entries from an SQLite table and returns them as a list of dictionaries.
 
     Args:
-        dictionary (dict): The dictionary to add.
-        filename (str, optional): The name of the text file. Defaults to "data.txt".
+        table_name (str): Name of the table.
+        db_file (str, optional): Path to the database file. Defaults to 'resources/db.db'.
+
+    Returns:
+        List of dictionaries: Each dictionary represents a row with column names as keys.
     """
+    with sqlite3.connect(db_file) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM {table_name}")
+        resources = cursor.fetchall()
+        print(resources)
+        column_names = [description[0] for description in cursor.description]
 
-    try:
-        # Convert the dictionary to a JSON string
-        json_string = json.dumps(dictionary)
+        resources_dict = [dict(zip(column_names, row)) for row in resources]
+        return resources_dict
 
-        # Open the file in append mode
-        with open(filename, "a") as f:
-            f.write(json_string + "\n")  # Add a newline for separation
 
-        st.success("Dictionary added to file successfully!")
+def add_entry(entry_data, table_name, db_file='resources/db.db'):
+    """Adds a new entry to the specified SQLite table, using parameterization for security.
 
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
-
-def read_resource(filename):
-    resources = []
-    try:
-        with open(filename, "r") as f:
-            for line in f:
-                resources.append(json.loads(line))
-    except FileNotFoundError:
-        pass  # Ignore if the file doesn't exist yet
-    return resources
+    Args:
+        entry_data (dict): The data to be added as a dictionary.
+        table_name (str): Name of the table.
+        db_file (str, optional): Path to the database file. Defaults to 'resources/db.db'.
+    """
+    with sqlite3.connect(db_file) as conn:
+        cursor = conn.cursor()
+        try:
+            columns = ', '.join(entry_data.keys())
+            placeholders = ', '.join('?' * len(entry_data))  # Create '?' for each value
+            sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+            cursor.execute(sql, tuple(entry_data.values()))  # Pass values as a tuple
+            conn.commit()
+            st.success("Data added successfully!")
+        except sqlite3.Error as e:
+            st.error(f"An error occurred: {e}")

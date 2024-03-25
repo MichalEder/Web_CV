@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 
-[data-testid="stImage"] img { /* Styling for images */
+[data-testid="stImage"] img {
     max-width: 100px;
     height: 100px;
     object-fit: scale-down;
@@ -18,34 +18,60 @@ st.title("The tools in my ever-evolving toolkit")
 st.markdown("<br>", unsafe_allow_html=True)
 
 
-skills = read_resource('resources/skills.txt')
+skills = read_resource('skills')
 
-col1, col2, col3 = st.columns([1,1,1])
+col1, col2, col3 = st.columns([1, 1, 1])
 st.columns([1 for item in skills])
 if skills:
-    for skill in skills:
-        match skills.index(skill) + 1:
-            case 1 | 4 | 7 | 10:
-                with col1:
-                    st.image(f"resources/images/{skill['Image']}", width=200)
-                    st.subheader(skill['Skill'])
-                    st.write(f"Level: {skill['Level']}")
-                    st.write(f"{skill['Description']}")
-                    st.write(' ')
-                    st.markdown("---")
-            case 2 | 5 | 8 | 11:
-                with col2:
-                    st.image(f"resources/images/{skill['Image']}", width=200)
-                    st.subheader(skill['Skill'])
-                    st.write(f"Level: {skill['Level']}")
-                    st.write(f"{skill['Description']}")
-                    st.write(' ')
-                    st.markdown("---")
-            case 3 | 6 | 9 | 12:
-                with col3:
-                    st.image(f"resources/images/{skill['Image']}", width=150)
-                    st.subheader(skill['Skill'])
-                    st.write(f"Level: {skill['Level']}")
-                    st.write(f"{skill['Description']}")
-                    st.write(' ')
-                    st.markdown("---")
+    for i, skill in enumerate(skills):
+        column_index = i % 3  # Will cycle between 0, 1, and 2
+        if column_index == 0:
+            with col1:
+                st.image(f"resources/images/{skill['Image']}", width=100)
+                st.subheader(skill['Skill'])
+                st.write(f"Level: {skill['Level']}")
+                st.write(f"{skill['Description']}")
+                st.write(' ')
+                st.markdown("---")
+        elif column_index == 1:
+            with col2:
+                st.image(f"resources/images/{skill['Image']}", width=100)
+                st.subheader(skill['Skill'])
+                st.write(f"Level: {skill['Level']}")
+                st.write(f"{skill['Description']}")
+                st.write(' ')
+                st.markdown("---")
+        else:
+            with col3:
+                st.image(f"resources/images/{skill['Image']}", width=100)
+                st.subheader(skill['Skill'])
+                st.write(f"Level: {skill['Level']}")
+                st.write(f"{skill['Description']}")
+                st.write(' ')
+                st.markdown("---")
+    # for skill in skills:
+    #     match skills.index(skill) + 1:
+    #         case 1 | 4 | 7 | 10:
+    #             with col1:
+    #                 st.image(f"resources/images/{skill['Image']}", width=200)
+    #                 st.subheader(skill['Skill'])
+    #                 st.write(f"Level: {skill['Level']}")
+    #                 st.write(f"{skill['Description']}")
+    #                 st.write(' ')
+    #                 st.markdown("---")
+    #         case 2 | 5 | 8 | 11:
+    #             with col2:
+    #                 st.image(f"resources/images/{skill['Image']}", width=200)
+    #                 st.subheader(skill['Skill'])
+    #                 st.write(f"Level: {skill['Level']}")
+    #                 st.write(f"{skill['Description']}")
+    #                 st.write(' ')
+    #                 st.markdown("---")
+    #         case 3 | 6 | 9 | 12:
+    #             with col3:
+    #                 st.image(f"resources/images/{skill['Image']}", width=150)
+    #                 st.subheader(skill['Skill'])
+    #                 st.write(f"Level: {skill['Level']}")
+    #                 st.write(f"{skill['Description']}")
+    #                 st.write(' ')
+    #                 st.markdown("---")

@@ -21,9 +21,6 @@ authenticator.login()
 if st.session_state["authentication_status"]:
     authenticator.logout(location='sidebar')
 
-
-
-
     if st.session_state["authentication_status"]:
         st.title("Add project:")
 
@@ -38,14 +35,14 @@ if st.session_state["authentication_status"]:
             submitted = st.form_submit_button("Add project")
 
             if submitted:
-                formal_edu_dict = {
+                projects_dict = {
                     'Project':Project,
                     'Tech': Tech,
                     'Description': Description,
                     'Link' : Link,
                     'Image' : Image
                 }
-                add_entry(formal_edu_dict, 'resources/projects.txt')
+                add_entry(projects_dict, 'projects')
 
         st.title("Add formal education:")
 
@@ -65,10 +62,10 @@ if st.session_state["authentication_status"]:
                     'School': school,
                     'Years': years,
                     'Faculty': faculty,
-                    'Field of study': field,
+                    'Field': field,
                     'Note': note
                 }
-                add_entry(formal_edu_dict, 'resources/education.txt')
+                add_entry(formal_edu_dict, 'education')
 
         st.title("Add courses:")
 
@@ -94,7 +91,7 @@ if st.session_state["authentication_status"]:
                     'date_of_compl': Date_of_compl,
                     'image': Image
                 }
-                add_entry(course_dict, 'resources/courses.txt')
+                add_entry(course_dict, 'courses')
 
         st.title("Add work experience")
 
@@ -104,7 +101,7 @@ if st.session_state["authentication_status"]:
             role = st.text_input("Position:")
             start_date = st.text_input("Start date:")
             end_date = st.text_input("End date:")
-            skills = st.text_input("Hard Skills:")
+            skills = st.text_input("Skills:")
             tools = st.text_input("Tools")
             description = st.text_area("Description:")
             image = st.text_input("Image:")
@@ -115,15 +112,15 @@ if st.session_state["authentication_status"]:
             if submitted:
                 work_exp_dict = {
                     'Company': company,
-                    'Position/Role': role,
-                    'Start Date': start_date,
-                    'End date': end_date,
+                    'Position_Role': role,
+                    'Start_Date': start_date,
+                    'End_date': end_date,
                     'Skills': skills,
                     'Tools': tools,
                     'Description': description,
                     'Image': image
                 }
-                add_entry(work_exp_dict, 'resources/work_experience.txt')
+                add_entry(work_exp_dict, 'work_experience')
 
         st.title("Add hobby")
 
@@ -141,7 +138,7 @@ if st.session_state["authentication_status"]:
                     'Description': description,
                     'Image': image
                 }
-                add_entry(hobby_dict, 'resources/hobby.txt')
+                add_entry(hobby_dict, 'hobby')
         st.title("Add skill:")
 
         with st.form("skills"):
@@ -161,7 +158,7 @@ if st.session_state["authentication_status"]:
                     'Description': description,
                     'Image': image
                 }
-                add_entry(course_dict, 'resources/skills.txt')
+                add_entry(course_dict, 'skills')
 
 elif st.session_state["authentication_status"] is False:
     st.error('Username/password is incorrect')
