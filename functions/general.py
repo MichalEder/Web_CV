@@ -35,7 +35,7 @@ def add_entry(entry_data, table_name, db_file='resources/db.db'):
             columns = ', '.join(entry_data.keys())
             placeholders = ', '.join('?' * len(entry_data))  # Create '?' for each value
             sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
-            cursor.execute(sql, tuple(entry_data.values()))  # Pass values as a tuple
+            cursor.execute(sql, tuple(entry_data.values()))
             conn.commit()
             st.success("Data added successfully!")
         except sqlite3.Error as e:

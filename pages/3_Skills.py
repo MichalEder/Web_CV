@@ -21,7 +21,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 skills = read_resource('skills')
 
 col1, col2, col3 = st.columns([1, 1, 1])
-st.columns([1 for item in skills])
+
 if skills:
     for i, skill in enumerate(skills):
         column_index = i % 3  # Will cycle between 0, 1, and 2
