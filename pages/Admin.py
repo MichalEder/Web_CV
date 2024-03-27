@@ -1,8 +1,9 @@
 import yaml
+import pandas as pd
 import streamlit as st
 import streamlit_authenticator as stauth
 from yaml.loader import SafeLoader
-from functions.general import add_entry
+from functions.general import add_entry, read_resource
 
 st.set_page_config(layout="wide")
 
@@ -22,6 +23,7 @@ if st.session_state["authentication_status"]:
     authenticator.logout(location='sidebar')
 
     if st.session_state["authentication_status"]:
+
         st.title("Add project:")
 
         with st.form("projects_form"):
@@ -159,6 +161,23 @@ if st.session_state["authentication_status"]:
                     'Image': image
                 }
                 add_entry(course_dict, 'skills')
+
+        tables = ['projects', 'education', 'courses', 'work_experience', 'hobby']
+        exclude_columns = []
+
+        for table in tables:
+            resources = read_resource(table)
+
+            if resources:
+                df = pd.DataFrame(resources)
+
+
+                df = df[[col for col in df.columns if col not in exclude_columns]]
+
+                st.header(table.title())
+                st.data_editor(df)
+
+
 
 elif st.session_state["authentication_status"] is False:
     st.error('Username/password is incorrect')
