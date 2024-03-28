@@ -1,9 +1,10 @@
 import yaml
-import pandas as pd
 import streamlit as st
 import streamlit_authenticator as stauth
 from yaml.loader import SafeLoader
-from functions.general import add_entry, read_resource
+
+from functions.general import save_uploaded_image
+from functions.db_interaction import add_entry
 
 st.set_page_config(layout="wide")
 
@@ -23,7 +24,11 @@ if st.session_state["authentication_status"]:
     authenticator.logout(location='sidebar')
 
     if st.session_state["authentication_status"]:
+        uploaded_image = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 
+        if uploaded_image is not None:
+            image_path = save_uploaded_image(uploaded_image)
+            st.success("Image uploaded and saved successfully!")
         st.title("Add project:")
 
         with st.form("projects_form"):
@@ -162,21 +167,12 @@ if st.session_state["authentication_status"]:
                 }
                 add_entry(course_dict, 'skills')
 
-        tables = ['projects', 'education', 'courses', 'work_experience', 'hobby']
-        exclude_columns = []
 
-        for table in tables:
-            resources = read_resource(table)
+    uploaded_image = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 
-            if resources:
-                df = pd.DataFrame(resources)
-
-
-                df = df[[col for col in df.columns if col not in exclude_columns]]
-
-                st.header(table.title())
-                st.data_editor(df)
-
+    if uploaded_image is not None:
+        image_path = save_uploaded_image(uploaded_image)
+        st.success("Image uploaded and saved successfully!")
 
 
 elif st.session_state["authentication_status"] is False:

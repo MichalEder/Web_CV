@@ -1,10 +1,17 @@
 import streamlit as st
-from functions.general import read_resource
 import sqlite3
+
+from functions.db_interaction import read_resource
+from functions.user_auth import get_authenticator, load_config
+from functions.display import display_education
 
 st.set_page_config(layout="wide")
 
+config = load_config()
+authenticator = get_authenticator(config)
+
 st.title('Formal Education')
+st.markdown("<br>", unsafe_allow_html=True)
 
 try:
     education = read_resource('education')
@@ -13,14 +20,8 @@ except sqlite3.Error as e:
 
 if education:
     for school in education:
-        st.subheader(school['School'])
-        st.write(school['Faculty'])
-        st.write(f"Field of study: {school['Field']}")
-        st.write(f"Duration of study: {school['Years']}")
-        st.write(f"Status: {school['Status']}")
-        st.write(school['Note'])
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("---")
+        display_education(school)
 else:
     st.write("No education information added yet.")
+
 

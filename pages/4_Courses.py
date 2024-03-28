@@ -1,11 +1,17 @@
 import streamlit as st
 import sqlite3
-from functions.general import read_resource
+
+from functions.db_interaction import read_resource
+from functions.display import display_course
+from functions.user_auth import get_authenticator, load_config
 
 st.set_page_config(layout="wide")
 
+config = load_config()
+authenticator = get_authenticator(config)
 
 st.title("Courses Completed and In Progress")
+st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("""
 I'm always looking for ways to gain knowledge and abilities that will make a positive impact. 
 My learning journey is driven by a deep passion for personal and professional growth. 
@@ -20,18 +26,7 @@ except sqlite3.Error as e:
 
 if courses:
     for course in courses:
-        with st.container():
-            col1, col2 = st.columns([1, 3])
+        display_course(course)
+else:
+    st.write("No courses information added yet.")
 
-            with col1:
-                st.image(f"resources/images/{course['image']}", width=None)
-
-            with col2:
-                st.subheader(course['course'])
-                st.write(course['provider'])
-                st.write(f"Completed: {course['date_of_compl']}")
-                st.write(f"Course type: {course['course_type']}")
-                st.markdown(f"[Link to Course]({course['link_to_course']})")
-                st.write(course['description'])
-                st.markdown("---")
-                st.markdown("<br>", unsafe_allow_html=True)

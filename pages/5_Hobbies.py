@@ -1,10 +1,17 @@
 import streamlit as st
 import sqlite3
-from functions.general import read_resource
+
+from functions.db_interaction import read_resource
+from functions.user_auth import get_authenticator, load_config
+from functions.display import display_hobby
 
 st.set_page_config(layout="wide")
 
+config = load_config()
+authenticator = get_authenticator(config)
+
 st.title('What I do for fun (and the unexpected skills I pick up)')
+st.markdown("<br>", unsafe_allow_html=True)
 
 try:
     hobbies = read_resource('hobby')
@@ -13,13 +20,6 @@ except sqlite3.Error as e:
 
 if hobbies:
     for hobby in hobbies:
-        with st.container():
-            st.subheader(f"{hobby['Hobby']}")
-            col1, col2 = st.columns([1, 5])
-
-            with col1:
-                st.image(f"resources/images/{hobby['Image']}", width=200)
-
-            with col2:
-                st.markdown(f"{hobby['Description']}")
-        st.markdown("---")
+        display_hobby(hobby)
+else:
+    st.write("No hobbies added yet.")
