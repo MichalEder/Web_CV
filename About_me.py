@@ -26,7 +26,7 @@ with col1:
 
     st.subheader("Languages")
     st.write("English - B2 - Used on daily basis")
-    st.write("Deutsch - A2-B1 - Slightly rusty, havent spoken in a while, used only for reading tech. documentation")
+    st.write("Deutsch - A2-B1 - Slightly rusty, haven't spoken in a while, used only for reading tech. documentation")
     st.write("Czech - C2 - Native speaker")
 
 
