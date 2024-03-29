@@ -1,6 +1,7 @@
 import sqlite3
 import streamlit as st
 
+
 def read_resource(table_name, db_file='resources/db.db'):
     """Reads all entries from an SQLite table and returns them as a list of dictionaries.
 
@@ -41,6 +42,7 @@ def add_entry(entry_data, table_name, db_file='resources/db.db'):
         except sqlite3.Error as e:
             st.error(f"An error occurred: {e}")
 
+
 def update_database_entry(table, primary_key, primary_key_value, data):
     """Updates an existing entry in an SQLite database.
 
@@ -61,6 +63,7 @@ def update_database_entry(table, primary_key, primary_key_value, data):
         conn.close()
     except sqlite3.Error as e:
         print(f"Error updating database: {e}")
+
 
 def delete_entry(table_name, primary_key, primary_key_value, db_file='resources/db.db'):
     """Deletes an entry from the specified SQLite table based on primary key.

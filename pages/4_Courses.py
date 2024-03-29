@@ -29,4 +29,3 @@ if courses:
         display_course(course)
 else:
     st.write("No courses information added yet.")
-

@@ -45,5 +45,3 @@ if skills:
         else:
             with col3:
                 display_skill(skill)
-
-

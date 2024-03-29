@@ -1,7 +1,16 @@
 import streamlit as st
 from functions.db_interaction import update_database_entry, delete_entry
 
+
 def display_edit_skill(skill):
+    """Displays an editable form for a given skill. Allows for modification or deletion of the skill entry.
+
+    Allows the user to modify the skill
+
+    Args:
+        skill (dict): A dictionary containing the skill's information, including
+        'Skill', 'Level', 'Image', 'Description'
+    """
     with st.form(f"{skill['Skill']} Edit"):
         skill_edited = st.text_input("Skill", value=skill['Skill'])
         level_edited = st.text_input("Level", value=skill['Level'])
@@ -22,7 +31,15 @@ def display_edit_skill(skill):
                 'Image': image_edited
             }
             update_database_entry('skills', 'ID', skill['ID'], skill_edit_dict)
+
+
 def display_skill(skill):
+    """Displays information about a given skill.
+
+    Args:
+        skill (dict): A dictionary containing the skill's information, including
+        'Skill', 'Level', 'Image', 'Description'
+    """
     if st.session_state["authentication_status"]:
         display_edit_skill(skill)
     else:
@@ -33,7 +50,17 @@ def display_skill(skill):
         st.write(' ')
     st.markdown("---")
 
+
 def display_edit_project(project):
+    """Displays an editable form for a project.
+
+    Allows the user to modify the project title, technologies, description, link, and image,
+    or delete the project from the database.
+
+    Args:
+        project (dict): A dictionary containing the project's information, including
+            'Project', 'Tech', 'Description', 'Link', and 'Image'.
+    """
     with st.form(f"{project['Project']} Edit"):
         project_edited = st.text_input("Project", value=project['Project'])
         tech_edited = st.text_input("Technologies", value=project['Tech'])
@@ -47,7 +74,6 @@ def display_edit_project(project):
         if submitted_delete:
             delete_entry('projects', 'ID', project['ID'])
 
-
         if submitted_edit:
             project_edit_dict = {
                 'Project': project_edited,
@@ -57,7 +83,15 @@ def display_edit_project(project):
                 'Image': image_edited
             }
             update_database_entry('projects', 'ID', project['ID'], project_edit_dict)
+
+
 def display_project(project):
+    """Displays information about a project in a visually organized format.
+
+    Args:
+        project (dict): A dictionary containing the project's information, including
+            'Project', 'Tech', 'Description', 'Link', and 'Image'.
+    """
     with (st.container()):
         if st.session_state["authentication_status"]:
             display_edit_project(project)
@@ -77,7 +111,16 @@ def display_project(project):
                     st.write(f"{project['Link']}")
     st.markdown("---")
 
+
 def display_edit_work(experience):
+    """Displays an editable form for a work experience entry.
+
+    Allows modification or deletion of information about a past or current work experience
+
+    Args:
+        experience (dict): A dictionary containing the work experience information, including
+            'Company', 'Role', 'Description', 'Duration', 'Skills', 'Tools',  and 'Image'
+    """
     with st.form(f"{experience['Position_Role']} Edit"):
         company_edited = st.text_input("Company", value=experience['Company'])
         position_role_edited = st.text_input("Position/ Role", value=experience['Position_Role'])
@@ -107,7 +150,14 @@ def display_edit_work(experience):
             }
             update_database_entry('work_experience', 'ID', experience['ID'], experience_edit_dict)
 
+
 def display_work(experience):
+    """Displays information about a work experience in a visually organized format.
+
+    Args:
+        experience (dict): A dictionary containing the work experience's information, including
+            'Company', 'Role', 'Description', 'Duration', 'Skills', 'Tools',  and 'Image'
+    """
     with st.container():
         if st.session_state["authentication_status"]:
             display_edit_work(experience)
@@ -130,7 +180,16 @@ def display_work(experience):
             st.markdown("---")
             st.markdown("<br>", unsafe_allow_html=True)
 
+
 def display_edit_course(course):
+    """Displays an editable form for a completed course or certification.
+
+    Allows modification or deletion of details related to the course,
+
+    Args:
+        course (dict): A dictionary containing the course information, including
+            'course', 'provider', 'description', 'date_of_compl', 'link_to_course', 'course_type',  and 'image'
+    """
     with st.form(f"{course['course']} Edit"):
         course_edited = st.text_input("Course", value=course['course'])
         provider_edited = st.text_input("Provider", value=course['provider'])
@@ -158,7 +217,14 @@ def display_edit_course(course):
             }
             update_database_entry('courses', 'ID', course['ID'], course_edit_dict)
 
+
 def display_course(course):
+    """Displays information about a courses in a visually organized format.
+
+    Args:
+        course (dict): A dictionary containing the work experience's information, including
+            'course', 'provider', 'description', 'date_of_compl', 'link_to_course', 'course_type',  and 'image'
+    """
     with st.container():
         if st.session_state["authentication_status"]:
             display_edit_course(course)
@@ -179,12 +245,22 @@ def display_course(course):
         st.markdown("---")
         st.markdown("<br>", unsafe_allow_html=True)
 
+
 def display_edit_education(school):
+    """Displays an editable form for formal education.
+
+    Allows modification or deletion of details related to the edutacion
+
+    Args:
+        school (dict): A dictionary containing the course information, including
+            'School', 'Faculty', 'Field', 'Years', 'Status' and 'Note'
+    """
     with st.form(f"{school['Years']} Edit"):
         school_edited = st.text_input("School", value=school['School'])
+        faculty_edited = st.text_input("Faculty", value=school['Faculty'])
         field_edited = st.text_input("Field of study", value=school['Field'])
-        years_edited = st.text_input("Completed:", value=school['Years'])
-        status_edited = st.text_input("Course type:", value=school['Status'])
+        years_edited = st.text_input("Years of studies:", value=school['Years'])
+        status_edited = st.text_input("Status:", value=school['Status'])
         note_edited = st.text_area("Note", value=school['Note'])
 
         submitted_edit = st.form_submit_button("Edit education")
@@ -196,6 +272,7 @@ def display_edit_education(school):
         if submitted_edit:
             school_edit_dict = {
                 'School': school_edited,
+                'Faculty': faculty_edited,
                 'Field': field_edited,
                 'Years': years_edited,
                 'Status': status_edited,
@@ -203,7 +280,14 @@ def display_edit_education(school):
             }
             update_database_entry('education', 'ID', school['ID'], school_edit_dict)
 
+
 def display_education(school):
+    """Displays information about education in a visually organized format.
+
+    Args:
+        school (dict): A dictionary containing the information about education, including
+            'School', 'Faculty', 'Field', 'Years', 'Status' and 'Note'
+    """
     if st.session_state["authentication_status"]:
         display_edit_education(school)
     else:
@@ -215,7 +299,16 @@ def display_education(school):
         st.write(school['Note'])
     st.markdown("---")
 
+
 def display_edit_hobby(hobby):
+    """Displays an editable form for hobby.
+
+    Allows modification or deletion of details related to the hobby
+
+    Args:
+        hobby (dict): A dictionary containing the course information. including
+            'Hobby', 'Description', 'Image'
+    """
     with st.form(f"{hobby['Hobby']} Edit"):
         hobby_edited = st.text_input("Hobby", value=hobby['Hobby'])
         description_edited = st.text_area("Description", value=hobby['Description'])
@@ -235,7 +328,14 @@ def display_edit_hobby(hobby):
             }
             update_database_entry('hobby', 'ID', hobby['ID'], hobby_edit_dict)
 
+
 def display_hobby(hobby):
+    """Displays information about hobbies in a visually organized format.
+
+    Args:
+        hobby (dict): A dictionary containing the information about hobby, including
+            'Hobby', 'Description', 'Image'
+    """
     if st.session_state["authentication_status"]:
         display_edit_hobby(hobby)
     else:

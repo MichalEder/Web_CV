@@ -24,4 +24,3 @@ if work_experiences:
         display_work(experience)
 else:
     st.write("No work experience information added yet.")
-
