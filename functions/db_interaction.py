@@ -33,7 +33,7 @@ def add_entry(entry_data, table_name, db_file='resources/db.db'):
         cursor = conn.cursor()
         try:
             columns = ', '.join(entry_data.keys())
-            placeholders = ', '.join('?' * len(entry_data))  # Create '?' for each value
+            placeholders = ', '.join('?' * len(entry_data))
             sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
             cursor.execute(sql, tuple(entry_data.values()))
             conn.commit()
